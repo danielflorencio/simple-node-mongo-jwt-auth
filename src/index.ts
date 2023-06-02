@@ -17,7 +17,7 @@ app.use(express.json())
 
 const server = createServer(app)
 
-mongoose.connect('mongodb://localhost:27017/chatbot-application')
+mongoose.connect('mongodb://localhost:27017/simple-jwt-server')
 
 const verifyStatusRateLimit = rateLimit({
     // windowMs: 15 * 60 * 1000, 
@@ -80,7 +80,6 @@ app.post('/api/login', async (req: Request, res: Response) => {
     
         user.token = token
         await user.save()
-        console.log('USER SECOND INTERACTION: ', user)
         return res.json({status: 'ok', user: token})
     } else{
         return res.json({status: 'error', user: false})
